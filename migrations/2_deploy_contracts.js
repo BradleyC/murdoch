@@ -1,13 +1,11 @@
-const ERC998 = artifacts.require('./contracts/ERC998.sol')
-const nonspec = artifacts.require('./contracts/nonspecERC721.sol')
+const Helpers = artifacts.require('./contracts/Helpers.sol')
+const Murdoch = artifacts.require('./contracts/Murdoch.sol')
 
 module.exports = async deployer => {
-  // deploy core contract
-  await deployer.deploy(ERC998)
-  // console.log('Contract address:', c.address)
+  await deployer.deploy(Helpers)
 
   // link dependencies
-  deployer.link(ERC998, [nonspec])
+  deployer.link(Helpers, [Murdoch])
 
   // deploy dependencies
-  await deployer.deploy(nonspec)
+  await deployer.deploy(Murdoch)

@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-contract TidbitsHelpers {
+contract Helpers {
     // owners have all permissions
     mapping (address => bool) owners;
     address[] ownerList;
