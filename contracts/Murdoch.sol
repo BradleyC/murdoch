@@ -10,23 +10,31 @@ contract Murdoch is Helpers {
     address[] private contractsList;
 
     function registerAccount(address _account) public onlySigner() {
-        registeredAccounts.push(_account);
+        registeredAccounts[_account] = true;
+        accountsList.push(_account);
     }
 
-    function registerContract(address _contract) public onlySigner() {
-        registeredAccounts.push(_contract);
+    function registerContract(address _contract, address owner) public onlySigner() {
+        registeredContracts[_contract] = true;
+        contractsList.push(_contract);
+        accountsToContracts[owner].push(_contract);
     }
 
-    function getAccounts() public onlyOwner() returns (address[] memory) {
-        return accountsList[];
+    function getAccounts() public view onlyOwner() returns (address[] memory) {
+        return accountsList;
     }
 
-    function getContracts() public onlyOwner() returns (address[] memory) {
-        return contractsList[];
+    function getContracts() public view onlyOwner() returns (address[] memory) {
+        return contractsList;
     }
 
-    function topUpAccount(address account, address _contract) public payable onlyRegisteredAccount() {
-        require (registeredContracts[_contract] == true, "Can't accept money for work we can't perform")
+    function getContractsByAccount(address _account) public view onlyOwner() returns (address[] memory) {
+        return accountsToContracts[_account];
+    }
+
+    function topUpContract(address _contract) public payable onlyRegisteredAccount() {
+        require (registeredContracts[_contract] == true, "Can't accept money for work we can't perform");
+        emit topUp(_contract, msg.value);
     }
 
     function () external payable onlyRegisteredAccount() {
@@ -43,7 +51,7 @@ contract Murdoch is Helpers {
     }
 
     modifier onlyRegisteredAccount() {
-        require(registeredAccounts[account] == true, "please register before paying thx");
+        require(registeredAccounts[msg.sender] == true, "please register before paying thx");
         _;
     }
 }
