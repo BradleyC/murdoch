@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <div class="display-box">
-      <h2>Dappministration</h2>
-      <h4>Your contracts</h4>
+      <h4>Your Organization's Contracts</h4>
       <div class="contracts">
         <div v-for="contract in contracts" class="contract-row">
           <div>{{ contract.name }}</div>
