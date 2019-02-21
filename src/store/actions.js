@@ -29,10 +29,14 @@ export default {
         dispatch('connect')
       }, 1000)
     }
+    // Metamask will prevent this. Sorry.
     if (state.retried && !web3Provider) {
-      web3Provider = new Web3(
-        window.web3.givenProvider || `ws://${process.env.RPC_PROVIDER}`
+      web3Provider = new Web3.providers.WebsocketProvider(
+        process.env.RPC_PROVIDER
       )
+      // web3Provider = new Web3(
+      //   window.web3.givenProvider || `ws://${process.env.RPC_PROVIDER}`
+      // )
     }
     if (web3Provider) {
       window.web3 = new Web3(web3Provider)
@@ -49,15 +53,17 @@ export default {
     }, 3000)
   },
 
-  checkAccount({ commit, state }) {
+  checkAccount({ state }) {
     console.log(state.account)
+    console.log(state.Contract)
     window.web3.eth.getAccounts((error, accounts) => {
       if (error) console.error(error)
-      if (state.account !== accounts[0]) {
-        commit('USE_ACCOUNT', accounts[0])
-      } else if (!accounts.length) {
-        commit('USE_ACCOUNT', null)
-      }
+      console.log(accounts)
+      // if (state.account !== accounts[0]) {
+      //   commit('USE_ACCOUNT', accounts[0])
+      // } else if (!accounts.length) {
+      //   commit('USE_ACCOUNT', null)
+      // }
     })
   },
 
