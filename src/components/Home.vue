@@ -1,43 +1,15 @@
 <template>
   <div class="container">
-    <CardBtn header-text="Make your mark!" btn-text=""/>
+    <Dappmin />
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import CardBtn from './CardBtn'
+import Dappmin from './Dappmin'
 
 export default {
   name: 'Home',
   components: {
-    CardBtn
-  },
-  data() {
-    return {
-      newRef: '0x06012c8cf97bead5deae237070f9587f8e7a266d',
-      newId: 1066650
-    }
-  },
-
-  computed: {
-    ...mapGetters(['items'])
-  },
-
-  methods: {
-    ...mapActions(['removeAsset', 'addAsset']),
-    getImagePath(item) {
-      // return `https://img.cryptokitties.co/${item.ref}/${item.id}.svg`
-      return `https://storage.googleapis.com/opensea-prod.appspot.com/${
-        item.ref
-      }/${item.id}.svg`
-    },
-    deleteAsset(item) {
-      this.removeAsset(item)
-    },
-    addAssetItem() {
-      if (!this.newRef || !this.newId) return
-      this.addAsset({ ref: this.newRef, id: parseInt(this.newId) })
-    }
+    Dappmin
   }
 }
 </script>

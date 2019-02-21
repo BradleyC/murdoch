@@ -2,7 +2,7 @@
   <div class="header">
     <div />
     <div class="logo">
-      <h2 class="app-name">tidbits</h2>
+      <h2 class="app-name">Dappministration of Justice</h2>
     </div>
     <div class="address">
       <span v-if="account">{{ account }}</span>

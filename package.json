@@ -77,6 +77,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^4.7.1",
     "eth-gas-reporter": "^0.1.12",
+    "ethereumjs-abi": "^0.6.6",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^3.0.2",

@@ -9,3 +9,4 @@ module.exports = async deployer => {
 
   // deploy dependencies
   await deployer.deploy(Murdoch)
+}
