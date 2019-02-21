@@ -23,7 +23,6 @@ export default {
     window.gapi.signin2.render('google-signin-hook', {
       onsuccess: this.onSignIn
     })
-    console.log(this.account)
   },
   computed: {
     ...mapGetters(['account', 'profile'])
